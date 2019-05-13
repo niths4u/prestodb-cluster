@@ -1,0 +1,39 @@
+version: '3.5'
+services:
+  coordinator:
+    build: .
+    volumes:
+     - .:/home/presto/presto_files
+    stdin_open: true
+    tty: true
+    container_name: "coordinator"
+    command: ./presto_files/presto_setup.sh coordinator coordinator TRUE
+    ports:
+     - "9090:9090"
+
+  worker0:
+    build: .
+    volumes:
+     - .:/home/presto/presto_files
+    stdin_open: true
+    tty: true
+    container_name: "worker0"
+    command: ./presto_files/presto_setup.sh worker worker0 TRUE
+    ports:
+     - "9091:9091"
+
+
+  worker1:
+    build: .
+    volumes:
+     - .:/home/presto/presto_files
+    stdin_open: true
+    tty: true
+    container_name: "worker1"
+    command: ./presto_files/presto_setup.sh worker worker1 TRUE
+    ports:
+     - "9092:9091"
+networks:
+  default:
+    external:
+      name: presto_net
