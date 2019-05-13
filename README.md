@@ -1,15 +1,15 @@
 # prestodb_cluster
-using docker to setup presto cluster
-This code helps to setup presto cluster using docker from base ubuntu 18.04 
-It also provides sample connection to mysql , postgresql , sqlserver
-It also helps proivides ssh tunneling for jumpbox in case a db server requires jumpserver to connect
+* using docker to setup presto cluster
+* This code helps to setup presto cluster using docker from base ubuntu 18.04 
+* It also provides sample connection to mysql , postgresql , sqlserver
+* It also helps proivides ssh tunneling for jumpbox in case a db server requires jumpserver to connect
 
 # prestodb_cluster
 
-Is a simple set of commands for launching multiple node [Presto](https://prestosql.io/) cluster on docker container.
-This code helps to setup presto cluster using docker from base ubuntu 18.04 
-It also provides sample connection to mysql , postgresql , sqlserver
-It has set of commands that does ssh tunneling for jumpbox in case a db server requires jumpserver to connect with passkey phrase along with setting passwordless authentication
+* Is a simple set of commands for launching multiple node [Presto](https://prestosql.io/) cluster on docker container.
+* This code helps to setup presto cluster using docker from base ubuntu 18.04 
+* It also provides sample connection to mysql , postgresql , sqlserver
+* It has set of commands that does ssh tunneling for jumpbox in case a db server requires jumpserver to connect with passkey phrase along with setting passwordless authentication
 
 
 
@@ -22,7 +22,8 @@ $ docker network create presto_net;
 
 ## docker-compose.yml
 
-You can launch multiple node docker presto cluster with below yaml file. `command` is required to pass node id information which must be unique in a cluster. 
+You can launch multiple node docker presto cluster with below yaml file. `command` is required to pass node id information which must be unique in a cluster.
+
 Very Important : Keep adding worker0 , worker1 , worker2 etc as per your need. Here only 2 workers are kept. Everytime you add a new worker , make sure to change the worker<number> and also the port . For eg a new worker 2 will have name worker2 and port 9093:9091 and also the command will contain worker2. The last parameter TRUE is meant if there is any ssh jumpserver configuration needed . This will automatically setup tunneling if we provide privatekey and passphrase appropriately. The steps are explained under ssh settings section below
 
 ```Dockerfile
@@ -98,7 +99,9 @@ fi
 
 # SSH settings ssh_fix.sh
 Very Important : if people are using passphrase , then put the passphrase in send"asdasdasdsad\n" and also make sure to put the exact name in which you have authenticated in jumpserver instead of myname@machine. For eg , if you are authenticated with username tom@cat.com then put the line as 
+```
 expect "Identity added: /home/presto/presto_files/ssh_setup/priv_key (tom@cat.com)"
+```
 Easiest way is to run ssh manually and see the exact commands that are comming in the terminal and use that in the below script.
 
 ```
@@ -119,13 +122,18 @@ this folder contains coordinator related files and also some dummy catalogs for 
 
 # Code Architecture
 The code first creates the docker file
+
 Then it mounts the current folder into the docker folder named presto_files
+
 Then runs the presto_setup.sh which basically creates a file insider docker named presto_settings and copy all necessary files from presto_base and presto_coordinator/worker to setup presto inside docker.
 
 # Some useful commands ( assuming docker is running only this presto setup ) 
 docker-compose ps # to see if all nodes are runnings
+
 docker-compose logs # to see logs while running the presto docker setup
+
 docker-compose exec coordinator /bin/bash #to connect to a coordinator
+
 docker-compose down # to remove all docker within this
 
 # Connecting to Presto sql
