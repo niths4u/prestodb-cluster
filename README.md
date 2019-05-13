@@ -1,10 +1,10 @@
-# prestodb_cluster
+# prestodb cluster
 * using docker to setup presto cluster
 * This code helps to setup presto cluster using docker from base ubuntu 18.04 
 * It also provides sample connection to mysql , postgresql , sqlserver
 * It also helps proivides ssh tunneling for jumpbox in case a db server requires jumpserver to connect
 
-# prestodb_cluster
+# prestodb cluster
 
 * Is a simple set of commands for launching multiple node [Presto](https://prestosql.io/) cluster on docker container.
 * This code helps to setup presto cluster using docker from base ubuntu 18.04 
