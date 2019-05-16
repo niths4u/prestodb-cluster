@@ -1,5 +1,7 @@
 # Prestodb cluster and setting up nodes
 
+https://github.com/niths4u/prestodb-cluster
+
 * Is a simple set of commands for launching multiple node [Presto](https://prestosql.io/) cluster on docker container.
 * This code helps to setup presto cluster using docker from base ubuntu 18.04 
 * It also provides sample connection to mysql , postgresql , sqlserver
